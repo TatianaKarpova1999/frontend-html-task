@@ -3,6 +3,7 @@ import classnames from 'classnames';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import logo from '../../assets/logo.png';
 import PropTypes from 'prop-types';
+import {SidebarWrapper, SidebarItem} from './index'
 
 const routes = [
     { title: 'Home', icon: 'fas-solid fa-house', path: '/' },
@@ -32,7 +33,7 @@ const Sidebar = (props) => {
     };
 
     return (
-        <div className={ containerClassnames }>
+        <SidebarWrapper color={color} className={ containerClassnames }>
             <div>
                 <img src={ logo } alt="TensorFlow logo"/>
                 <span>TensorFlow</span>
@@ -43,7 +44,8 @@ const Sidebar = (props) => {
             <div>
                 {
                     routes.map(route => (
-                        <div
+                        <SidebarItem
+                            color={color}
                             key={ route.title }
                             onClick={() => {
                                 goToRoute(route.path);
@@ -51,14 +53,15 @@ const Sidebar = (props) => {
                         >
                             <FontAwesomeIcon icon={ route.icon }/>
                             <span>{ route.title }</span>
-                        </div>
+                        </SidebarItem>
                     ))
                 }
             </div>
             <div>
                 {
                     bottomRoutes.map(route => (
-                        <div
+                        <SidebarItem
+                            color={color}
                             key={ route.title }
                             onClick={() => {
                                 goToRoute(route.path);
@@ -66,11 +69,11 @@ const Sidebar = (props) => {
                         >
                             <FontAwesomeIcon icon={ route.icon }/>
                             <span>{ route.title }</span>
-                        </div>
+                        </SidebarItem>
                     ))
                 }
             </div>
-        </div>
+        </SidebarWrapper>
     );
 };
 
