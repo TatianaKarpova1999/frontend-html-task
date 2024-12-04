@@ -3,7 +3,7 @@ import classnames from 'classnames';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import logo from '../../assets/logo.png';
 import PropTypes from 'prop-types';
-import {SidebarWrapper, LogoContainer, SidebarToggle, SidebarItemContainer, SidebarItem, TextLogo} from './index'
+import {SidebarBg, SidebarWrapper, LogoContainer, SidebarToggle, SidebarItemContainer, SidebarItem, TextLogo} from './index'
 
 const routes = [
     { title: 'Home', icon: 'fas-solid fa-house', path: '/' },
@@ -33,49 +33,51 @@ const Sidebar = (props) => {
     };
 
     return (
-        <SidebarWrapper color={color} className={ containerClassnames }>
-            <LogoContainer>
-                <img src={ logo } width="60" height="60" alt="TensorFlow logo"/>
-                <TextLogo color={ color }>TensorFlow</TextLogo>
-                <SidebarToggle color={ color } onClick={ toggleSidebar } type='button' className={ isOpened ? 'opened' : 'closed'}>
-                    <FontAwesomeIcon icon={ isOpened ? 'angle-left' : 'angle-right'} color={ color }/>
-                </SidebarToggle>
-            </LogoContainer>
-            <SidebarItemContainer>
-                {
-                    routes.map(route => (
-                        <SidebarItem
-                            color={color}
-                            href='#'
-                            key={ route.title }
-                            onClick={() => {
-                                goToRoute(route.path);
-                            }}
-                        >
-                            <FontAwesomeIcon icon={ route.icon }/>
-                            <span>{ route.title }</span>
-                        </SidebarItem>
-                    ))
-                }
-            </SidebarItemContainer>
-            <SidebarItemContainer>
-                {
-                    bottomRoutes.map(route => (
-                        <SidebarItem
-                            color={color}
-                            href='#'
-                            key={ route.title }
-                            onClick={() => {
-                                goToRoute(route.path);
-                            }}
-                        >
-                            <FontAwesomeIcon icon={ route.icon }/>
-                            <span>{ route.title }</span>
-                        </SidebarItem>
-                    ))
-                }
-            </SidebarItemContainer>
-        </SidebarWrapper>
+        <SidebarBg color={color}>
+            <SidebarWrapper color={color} className={ containerClassnames }>
+                <LogoContainer>
+                    <img src={ logo } width="60" height="60" alt="TensorFlow logo"/>
+                    <TextLogo color={ color }>TensorFlow</TextLogo>
+                    <SidebarToggle color={ color } onClick={ toggleSidebar } type='button' className={ containerClassnames }>
+                        <FontAwesomeIcon icon={ isOpened ? 'angle-left' : 'angle-right'} color={ color }/>
+                    </SidebarToggle>
+                </LogoContainer>
+                <SidebarItemContainer>
+                    {
+                        routes.map(route => (
+                            <SidebarItem
+                                color={color}
+                                href='#'
+                                key={ route.title }
+                                onClick={() => {
+                                    goToRoute(route.path);
+                                }}
+                            >
+                                <FontAwesomeIcon icon={ route.icon }/>
+                                <span>{ route.title }</span>
+                            </SidebarItem>
+                        ))
+                    }
+                </SidebarItemContainer>
+                <SidebarItemContainer>
+                    {
+                        bottomRoutes.map(route => (
+                            <SidebarItem
+                                color={color}
+                                href='#'
+                                key={ route.title }
+                                onClick={() => {
+                                    goToRoute(route.path);
+                                }}
+                            >
+                                <FontAwesomeIcon icon={ route.icon }/>
+                                <span>{ route.title }</span>
+                            </SidebarItem>
+                        ))
+                    }
+                </SidebarItemContainer>
+            </SidebarWrapper>
+        </SidebarBg>
     );
 };
 
