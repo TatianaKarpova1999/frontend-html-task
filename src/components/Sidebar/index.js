@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 export const SidebarBg= styled.div`
     background-color: ${(props) => props.color === "light" ? "#e2e8f0" : "#4B5966"};
+    padding: 70px;
 `;
 
 
@@ -101,7 +102,7 @@ export const SidebarItem = styled.a`
     font-size: 25px;
     line-height: 40px;
     font-size: 25px;
-    line-height: 40px;
+    line-height: 36px;
     display: flex;
     align-items: center;
     column-gap: 20px;
