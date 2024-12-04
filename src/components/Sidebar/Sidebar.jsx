@@ -3,7 +3,7 @@ import classnames from 'classnames';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import logo from '../../assets/logo.png';
 import PropTypes from 'prop-types';
-import {SidebarWrapper, SidebarItem} from './index'
+import {SidebarWrapper, LogoContainer, SidebarToggle, SidebarItemContainer, SidebarItem, TextLogo} from './index'
 
 const routes = [
     { title: 'Home', icon: 'fas-solid fa-house', path: '/' },
@@ -34,18 +34,19 @@ const Sidebar = (props) => {
 
     return (
         <SidebarWrapper color={color} className={ containerClassnames }>
-            <div>
-                <img src={ logo } alt="TensorFlow logo"/>
-                <span>TensorFlow</span>
-                <div onClick={ toggleSidebar }>
-                    <FontAwesomeIcon icon={ isOpened ? 'angle-left' : 'angle-right' }/>
-                </div>
-            </div>
-            <div>
+            <LogoContainer>
+                <img src={ logo } width="60" height="60" alt="TensorFlow logo"/>
+                <TextLogo color={ color }>TensorFlow</TextLogo>
+                <SidebarToggle color={ color } onClick={ toggleSidebar } type='button' className={ isOpened ? 'opened' : 'closed'}>
+                    <FontAwesomeIcon icon={ isOpened ? 'angle-left' : 'angle-right'} color={ color }/>
+                </SidebarToggle>
+            </LogoContainer>
+            <SidebarItemContainer>
                 {
                     routes.map(route => (
                         <SidebarItem
                             color={color}
+                            href='#'
                             key={ route.title }
                             onClick={() => {
                                 goToRoute(route.path);
@@ -56,12 +57,13 @@ const Sidebar = (props) => {
                         </SidebarItem>
                     ))
                 }
-            </div>
-            <div>
+            </SidebarItemContainer>
+            <SidebarItemContainer>
                 {
                     bottomRoutes.map(route => (
                         <SidebarItem
                             color={color}
+                            href='#'
                             key={ route.title }
                             onClick={() => {
                                 goToRoute(route.path);
@@ -72,7 +74,7 @@ const Sidebar = (props) => {
                         </SidebarItem>
                     ))
                 }
-            </div>
+            </SidebarItemContainer>
         </SidebarWrapper>
     );
 };
